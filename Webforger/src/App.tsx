@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route, useLocation, Link } from 'react-router-dom';
 import { AnimatePresence, motion } from 'motion/react';
 import BubbleMenu from './BubbleMenu';
-import webforgerLogo from '../public/Webforger.png';
+import webforgerLogo from './public/components/Webforger.png';
 import Home from './pages/Home';
 import Plans from './pages/Plans';
 import About from './pages/About';
