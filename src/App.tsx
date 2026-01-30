@@ -1,7 +1,6 @@
 import { BrowserRouter, Routes, Route, useLocation, Link } from 'react-router-dom';
 import { AnimatePresence, motion } from 'motion/react';
 import BubbleMenu from './BubbleMenu';
-const webforgerLogo = '/Webforger.png';
 import Home from './pages/Home';
 import Plans from './pages/Plans';
 import About from './pages/About';
@@ -91,7 +90,7 @@ function App() {
           }}
         >
           <img
-            src={webforgerLogo}
+            src="/Webforger.png"
             alt="Webforger"
             style={{
               height: '56px',
@@ -112,7 +111,7 @@ function App() {
           </span>
         </Link>
         <BubbleMenu
-          logo={webforgerLogo}
+          logo="/Webforger.png"
           items={items}
           menuAriaLabel="Toggle navigation"
           menuBg="white"
