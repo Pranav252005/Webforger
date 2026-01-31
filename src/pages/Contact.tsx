@@ -18,8 +18,23 @@ export default function Contact() {
   const [companyNameError, setCompanyNameError] = useState(false);
   
   const [stepperCompleted, setStepperCompleted] = useState(false);
+  const [showMobileNotice, setShowMobileNotice] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
+    const checkMobile = () => {
+      const mobile = window.innerWidth <= 768;
+      setIsMobile(mobile);
+      if (mobile) {
+        setTimeout(() => {
+          setShowMobileNotice(true);
+        }, 2500);
+      }
+    };
+
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+
     const timer = setTimeout(() => {
       if (titleRef.current) {
         gsap.to(titleRef.current, {
@@ -35,8 +50,20 @@ export default function Contact() {
       }
     }, 2000);
 
-    return () => clearTimeout(timer);
+    return () => {
+      clearTimeout(timer);
+      window.removeEventListener('resize', checkMobile);
+    };
   }, []);
+
+  useEffect(() => {
+    if (showMobileNotice) {
+      const dismissTimer = setTimeout(() => {
+        setShowMobileNotice(false);
+      }, 5000);
+      return () => clearTimeout(dismissTimer);
+    }
+  }, [showMobileNotice]);
 
   const validateStep1 = () => {
     let isValid = true;
@@ -306,10 +333,10 @@ export default function Contact() {
 
       {showContent && (
         <>
-          <div style={{
+          <div className="contact-info-left" style={{
             position: 'absolute',
-            bottom: '2rem',
-            left: '10rem',
+            bottom: isMobile ? '0rem' : '2rem',
+            left: isMobile ? '5rem' : '10rem',
             color: '#ffffff',
             zIndex: 10,
             fontFamily: "'Archivo Black', system-ui, sans-serif",
@@ -317,31 +344,31 @@ export default function Contact() {
             animation: 'fadeIn 1s ease-in forwards'
           }}>
             <div style={{
-              fontSize: '1rem',
-              marginBottom: '0.5rem',
+              fontSize: isMobile ? '0.65rem' : '1rem',
+              marginBottom: '0.3rem',
               color: '#a78bfa'
             }}>
               Contact us at
             </div>
             <div style={{
-              fontSize: '1.2rem',
-              marginBottom: '0.3rem',
-              letterSpacing: '1px'
+              fontSize: isMobile ? '0.7rem' : '1.2rem',
+              marginBottom: '0.2rem',
+              letterSpacing: isMobile ? '0.5px' : '1px'
             }}>
               +1 (647) 963-1595
             </div>
             <div style={{
-              fontSize: '1.2rem',
-              letterSpacing: '1px'
+              fontSize: isMobile ? '0.7rem' : '1.2rem',
+              letterSpacing: isMobile ? '0.5px' : '1px'
             }}>
               +91 897 133 8163
             </div>
           </div>
 
-          <div style={{
+          <div className="contact-info-right" style={{
             position: 'absolute',
-            bottom: '2rem',
-            right: '-6rem',
+            bottom: isMobile ? '1rem' : '2rem',
+            right: isMobile ? '-4rem' : '-6rem',
             color: '#ffffff',
             zIndex: 10,
             fontFamily: "'Archivo Black', system-ui, sans-serif",
@@ -350,15 +377,16 @@ export default function Contact() {
             animation: 'fadeIn 1s ease-in forwards'
           }}>
             <div style={{
-              fontSize: '1rem',
-              marginBottom: '0.5rem',
+              fontSize: isMobile ? '0.65rem' : '1rem',
+              marginBottom: '0.3rem',
               color: '#a78bfa'
             }}>
               Email at
             </div>
             <div style={{
-              fontSize: '1.2rem',
-              letterSpacing: '1px'
+              fontSize: isMobile ? '0.7rem' : '1.2rem',
+              letterSpacing: isMobile ? '0.5px' : '1px',
+              wordBreak: 'break-all'
             }}>
               webforgerhelp@gmail.com
             </div>
@@ -434,6 +462,67 @@ export default function Contact() {
         </>
       )}
 
+      {showMobileNotice && isMobile && (
+        <div
+          onClick={() => setShowMobileNotice(false)}
+          style={{
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            zIndex: 9998,
+            backgroundColor: 'transparent'
+          }}
+        >
+          <div
+            onClick={(e) => {
+              e.stopPropagation();
+              setShowMobileNotice(false);
+            }}
+            style={{
+              position: 'absolute',
+              top: '1rem',
+              right: '10rem',
+              backgroundColor: 'rgba(139, 92, 246, 0.25)',
+              backdropFilter: 'blur(10px)',
+              border: '1px solid rgba(168, 85, 247, 0.4)',
+              borderRadius: '16px',
+              padding: '1rem 1.25rem',
+              color: '#ffffff',
+              fontFamily: "'Archivo Black', system-ui, sans-serif",
+              fontSize: '0.85rem',
+              boxShadow: '0 0 30px rgba(139, 92, 246, 0.6), 0 0 60px rgba(139, 92, 246, 0.3)',
+              animation: 'slideInFromRight 0.5s ease-out, glowPulse 2s ease-in-out infinite',
+              cursor: 'pointer',
+              maxWidth: '200px',
+              textAlign: 'center',
+              zIndex: 9999,
+              transition: 'all 0.3s ease'
+            }}
+            onMouseDown={(e) => e.currentTarget.style.transform = 'scale(0.95)'}
+            onMouseUp={(e) => e.currentTarget.style.transform = 'scale(1)'}
+            onTouchStart={(e) => e.currentTarget.style.transform = 'scale(0.95)'}
+            onTouchEnd={(e) => e.currentTarget.style.transform = 'scale(1)'}
+          >
+            <div style={{
+              fontWeight: 'bold',
+              marginBottom: '0.25rem',
+              color: '#e9d5ff'
+            }}>
+              💻 Best Viewed on Laptop
+            </div>
+            <div style={{
+              fontSize: '0.7rem',
+              color: '#c4b5fd',
+              fontFamily: 'system-ui, sans-serif'
+            }}>
+              Tap to dismiss
+            </div>
+          </div>
+        </div>
+      )}
+
       <style>{`
         @keyframes fadeIn {
           from {
@@ -454,6 +543,26 @@ export default function Contact() {
           to {
             opacity: 1;
             transform: translate(-50%, 0);
+          }
+        }
+
+        @keyframes slideInFromRight {
+          from {
+            opacity: 0;
+            transform: translateX(100px);
+          }
+          to {
+            opacity: 1;
+            transform: translateX(0);
+          }
+        }
+
+        @keyframes glowPulse {
+          0%, 100% {
+            box-shadow: 0 0 30px rgba(139, 92, 246, 0.6), 0 0 60px rgba(139, 92, 246, 0.3);
+          }
+          50% {
+            box-shadow: 0 0 40px rgba(139, 92, 246, 0.8), 0 0 80px rgba(139, 92, 246, 0.5);
           }
         }
       `}</style>
