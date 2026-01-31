@@ -90,7 +90,7 @@ function App() {
           }}
         >
           <img
-            src="src/pages/Webforger.png"
+            src="/Webforger.png"
             alt="Webforger"
             style={{
               height: '56px',
@@ -111,7 +111,7 @@ function App() {
           </span>
         </Link>
         <BubbleMenu
-          logo="Webforger.png"
+          logo="/Webforger.png"
           items={items}
           menuAriaLabel="Toggle navigation"
           menuBg="white"
