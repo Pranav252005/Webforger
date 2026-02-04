@@ -12,9 +12,38 @@ const About: React.FC = () => {
   const [ctaVisible, setCtaVisible] = useState(false);
   const [overlayStage, setOverlayStage] = useState<'closed' | 'confirm' | 'expanded'>('closed');
   const [selectedChoice, setSelectedChoice] = useState<'yes' | 'no'>('no');
-  const heroTopPosition = '54%'; // adjust this value to move the SplitText block vertically
-  const introBlockOffset = '-143px'; // adjust this value (e.g., '-40px' or '-120px') to move the intro text + button up/down
+  const heroTopPosition = '70%'; // adjust this value to move the SplitText block vertically
+  const introBlockOffset = '-333px'; // adjust this value (e.g., '-40px' or '-120px') to move the intro text + button up/down
   const gradientColors = useMemo(() => ['#FF9FFC', '#5227FF'], []);
+  const animatedTexts = useMemo(
+    () => [
+      'Webforger builds websites that stay out of the way so your work can speak.',
+      'Structure first. Motion only when it serves clarity. Delivery without theatrics.',
+      'We aren’t here to swallow up your time. We’re here to help you build your business. Soo go on go build your business while we do this for you.'
+    ],
+    []
+  );
+  const renderAnimatedText = (text: string, key: string, index: number) => {
+    const totalDuration = 20; // seconds
+    const startDelay = 2; // seconds before first line starts
+    const lines = animatedTexts.length || 1;
+    const lineDuration = (totalDuration - startDelay) / lines; // spread evenly
+    const delay = startDelay + index * lineDuration;
+    return (
+      <p
+        key={key}
+        style={{
+          margin: key === 'p1' ? 0 : key === 'p2' ? '12px 0 0' : '14px 0 0',
+          opacity: 0,
+          filter: 'blur(10px)',
+          animation: `fadeBlurLine ${lineDuration}s ease forwards`,
+          animationDelay: `${delay}s`
+        }}
+      >
+        {text}
+      </p>
+    );
+  };
   const handleAnimationComplete = () => {
     // Defer visibility to next frame to avoid blocking during the text animation end
     requestAnimationFrame(() => setLineVisible(true));
@@ -102,7 +131,8 @@ const About: React.FC = () => {
             style={{
               color: 'white',
               fontFamily: "'Archivo Black', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif",
-              marginLeft: 0
+              marginLeft: 0,
+              height: '50%'
             }}
           >
             <SplitText
@@ -129,7 +159,7 @@ That's Webforger.`}
               className="about-hero-line"
               style={{
                 margin: '-22px auto 0',
-                marginRight: '10px',
+                marginRight: '40px',
                 height: '2px',
                 background: 'linear-gradient(to right, transparent, rgba(255, 255, 255, 1), transparent)',
                 opacity: lineVisible ? 1 : 0,
@@ -145,7 +175,7 @@ That's Webforger.`}
         className="about-content-sections"
         style={{
           position: 'relative',
-          zIndex: 2,
+          zIndex: 3,
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
@@ -160,6 +190,11 @@ That's Webforger.`}
         <style>{`
           .about-overlay-body::-webkit-scrollbar { display: none; }
           .about-overlay-body { scrollbar-width: none; }
+          @keyframes fadeBlurLine {
+            0% { opacity: 0; filter: blur(10px); }
+            30% { opacity: 0.6; filter: blur(6px); }
+            100% { opacity: 1; filter: blur(0); }
+          }
         `}</style>
 
         <div
@@ -172,13 +207,11 @@ That's Webforger.`}
             fontWeight: 200,
             letterSpacing: '0.01em',
             opacity: 0.94,
-            transition: 'opacity 0.4s ease',
+            transition: 'opacity 2s ease',
             transform: `translateY(${introBlockOffset})`
           }}
         >
-          <p style={{ margin: 0 }}>Webforger builds websites that stay out of the way so your work can speak.</p>
-          <p style={{ margin: '12px 0 0' }}>Structure first. Motion only when it serves clarity. Delivery without theatrics.</p>
-          <p style={{ margin: '14px 0 0' }}>We aren’t here to swallow up your time. We’re here to help you build a website while you build your business. Soo go on go build your business while we do this for you.</p>
+          {animatedTexts.map((t, idx) => renderAnimatedText(t, `p${idx + 1}`, idx))}
         </div>
 
         <div style={{ height: 36 }} />
@@ -191,20 +224,20 @@ That's Webforger.`}
           }}
           style={{
             opacity: ctaVisible ? 1 : 0,
-            transform: ctaVisible ? `translateY(${introBlockOffset})` : `translateY(calc(${introBlockOffset} + 100px))`,
-            transition: 'opacity 0.6s ease, transform 0.6s ease',
+            transform: ctaVisible ? `translateY(calc(${introBlockOffset} - 60px))` : `translateY(calc(${introBlockOffset} + 80px))`,
+            transition: 'opacity 3s ease, transform 3s ease',
+            transitionDelay: ctaVisible ? '17s' : '0s',
             pointerEvents: ctaVisible ? 'auto' : 'none',
             background: 'rgba(40, 40, 40, 0.56)',
             color: '#eae8ff',
-            border: '1px solid rgba(255, 255, 255, 0.45)',
+            border: '1px solid rgba(255, 255, 255, 0)',
             borderRadius: 999,
-            padding: '12px 26px',
+            padding: '12px 36px',
             fontSize: 15,
             letterSpacing: '0.02em',
             cursor: 'pointer',
             outline: 'none',
-            transitionProperty: 'opacity, transform, background, border',
-            transitionDuration: '0.6s, 0.6s, 0.25s, 0.25s'
+            transitionProperty: 'opacity, transform, background, border'
           }}
         >
           Continue reading
