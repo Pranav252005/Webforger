@@ -8,6 +8,7 @@ export default function Home() {
   return (
     <>
       <ColorBends
+        style={{ position: 'fixed', inset: 0, width: '100vw', height: '100vh', zIndex: 0 }}
         colors={["#5d0011ff", "#009264ff", "#2b00ffff"]}
         rotation={0}
         speed={0.2}
