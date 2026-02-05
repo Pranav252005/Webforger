@@ -4,7 +4,7 @@ import { OrbitControls, useProgress, Html, Environment, ContactShadows, useGLTF 
 import * as THREE from 'three';
 
 class ModelViewerErrorBoundary extends Component<
-  { fallback?: ReactNode },
+  { fallback?: ReactNode; children?: ReactNode },
   { hasError: boolean; error?: unknown }
 > {
   state: { hasError: boolean; error?: unknown } = { hasError: false };

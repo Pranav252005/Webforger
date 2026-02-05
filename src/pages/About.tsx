@@ -1,7 +1,6 @@
-import React, { useMemo, useState, useEffect, useRef } from 'react';
+import React, { useMemo, useState, useEffect } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { useGSAP } from '@gsap/react';
 import GradientBlinds from '../components/GradientBlinds';
 import SplitText from '../components/SplitText';
 
@@ -255,8 +254,8 @@ That's Webforger.`}
               background: overlayStage === 'expanded' ? 'rgba(10, 8, 20, 0.78)' : 'rgba(10, 8, 20, 0.62)',
               backdropFilter: 'blur(12px)',
               transition: 'opacity 0.35s ease',
-              opacity: overlayStage === 'closed' ? 0 : 1,
-              pointerEvents: overlayStage === 'closed' ? 'none' : 'auto'
+              opacity: 1,
+              pointerEvents: 'auto'
             }}
             onClick={() => setOverlayStage('closed')}
           >
