@@ -1,5 +1,7 @@
+import { useEffect, useRef, useState } from 'react';
 import { BrowserRouter, Routes, Route, useLocation, Link } from 'react-router-dom';
 import { AnimatePresence, motion } from 'motion/react';
+import lottie from 'lottie-web';
 import BubbleMenu from './BubbleMenu';
 import { DeviceProvider } from './lib/device';
 import Home from './pages/Home';
@@ -79,6 +81,52 @@ function AnimatedRoutes() {
 }
 
 function App() {
+  const [showLoader, setShowLoader] = useState(() => !sessionStorage.getItem('wf_loader_seen'));
+  const [exiting, setExiting] = useState(false);
+  const loaderRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    if (!loaderRef.current) return;
+    const anim = lottie.loadAnimation({
+      container: loaderRef.current,
+      renderer: 'svg',
+      loop: true,
+      autoplay: true,
+      path: '/MoldWizards.json'
+    });
+    return () => anim.destroy();
+  }, []);
+
+  useEffect(() => {
+    if (!showLoader) return;
+
+    const start = performance.now();
+    let finished = false;
+
+    const finish = () => {
+      if (finished) return;
+      finished = true;
+      const elapsed = performance.now() - start;
+      const wait = Math.max(0, 5000 - elapsed);
+      setTimeout(() => {
+        setExiting(true);
+        setTimeout(() => {
+          setShowLoader(false);
+          sessionStorage.setItem('wf_loader_seen', '1');
+        }, 700);
+      }, wait);
+    };
+
+    const onLoad = () => finish();
+    window.addEventListener('load', onLoad);
+    const fallback = setTimeout(() => finish(), 12000);
+
+    return () => {
+      window.removeEventListener('load', onLoad);
+      clearTimeout(fallback);
+    };
+  }, [showLoader]);
+
   return (
     <DeviceProvider>
       <BrowserRouter>
@@ -155,6 +203,47 @@ function App() {
           >
             We are a web development company
           </span>
+
+          {showLoader && (
+            <div
+              style={{
+                position: 'fixed',
+                inset: 0,
+                zIndex: 10000,
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                background: '#000',
+                pointerEvents: 'auto',
+                opacity: exiting ? 0 : 1,
+                transition: 'opacity 0.5s ease'
+              }}
+            >
+              <style>{`
+                @keyframes loaderBounce {
+                  0% { transform: translateY(0) scale(0.96); }
+                  50% { transform: translateY(-10px) scale(1.02); }
+                  100% { transform: translateY(0) scale(0.96); }
+                }
+                @keyframes loaderExit {
+                  0% { opacity: 1; transform: scale(1); }
+                  100% { opacity: 0; transform: scale(1.35); }
+                }
+              `}</style>
+              <div
+                style={{
+                  width: '320px',
+                  height: '320px',
+                  animation: exiting
+                    ? 'loaderExit 0.6s ease forwards'
+                    : 'loaderBounce 1.6s ease-in-out infinite',
+                  filter: 'drop-shadow(0 14px 26px rgba(0,0,0,0.5))'
+                }}
+              >
+                <div ref={loaderRef} style={{ width: '100%', height: '100%' }} aria-label="Loading" />
+              </div>
+            </div>
+          )}
         </div>
       </BrowserRouter>
     </DeviceProvider>
