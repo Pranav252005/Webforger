@@ -335,11 +335,14 @@ export default function Contact() {
         <>
           <div className="contact-info-left" style={{
             position: 'absolute',
-            bottom: isMobile ? '0rem' : '2rem',
-            left: isMobile ? '5rem' : '10rem',
+            bottom: isMobile ? '5.5rem' : '2rem',
+            left: isMobile ? '50%' : '10rem',
+            transform: isMobile ? 'translateX(-50%)' : 'none',
             color: '#ffffff',
             zIndex: 10,
             fontFamily: "'Archivo Black', system-ui, sans-serif",
+            textAlign: isMobile ? 'center' : 'left',
+            width: isMobile ? '90%' : 'auto',
             opacity: 0,
             animation: 'fadeIn 1s ease-in forwards'
           }}>
@@ -367,12 +370,15 @@ export default function Contact() {
 
           <div className="contact-info-right" style={{
             position: 'absolute',
-            bottom: isMobile ? '1rem' : '2rem',
-            right: isMobile ? '-4rem' : '-6rem',
+            bottom: isMobile ? '1.5rem' : '2rem',
+            right: isMobile ? 'auto' : '-6rem',
+            left: isMobile ? '50%' : 'auto',
+            transform: isMobile ? 'translateX(-50%)' : 'none',
             color: '#ffffff',
             zIndex: 10,
             fontFamily: "'Archivo Black', system-ui, sans-serif",
-            textAlign: 'right',
+            textAlign: isMobile ? 'center' : 'right',
+            width: isMobile ? '90%' : 'auto',
             opacity: 0,
             animation: 'fadeIn 1s ease-in forwards'
           }}>
