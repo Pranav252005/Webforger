@@ -186,3 +186,5 @@ const SplitText: React.FC<SplitTextProps> = ({
 };
 
 export default SplitText;
+
+// noop: redeploy

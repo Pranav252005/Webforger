@@ -32,3 +32,5 @@ export default function Blog() {
     </div>
   );
 }
+
+// noop: redeploy

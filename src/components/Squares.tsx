@@ -153,3 +153,5 @@ const Squares: React.FC<SquaresProps> = ({
 };
 
 export default Squares;
+
+// noop: redeploy

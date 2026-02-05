@@ -644,3 +644,5 @@ const ModelViewer: FC<ViewerProps> = ({
 };
 
 export default ModelViewer;
+
+// noop: redeploy

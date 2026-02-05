@@ -48,6 +48,8 @@ const items = [
   }
 ];
 
+// noop: trigger redeploy
+
 function AnimatedRoutes() {
   const location = useLocation();
 
@@ -251,3 +253,5 @@ function App() {
 }
 
 export default App;
+
+// noop: redeploy

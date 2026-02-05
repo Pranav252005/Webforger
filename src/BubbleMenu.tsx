@@ -228,7 +228,6 @@ export default function BubbleMenu({
     <>
       <nav className={containerClassName} style={style} aria-label="Main navigation">
         <div className="menu-toggle">
-          <span className="menu-text">Menu</span>
           <button
             type="button"
             className={`bubble toggle-bubble menu-btn ${isMenuOpen ? 'open' : ''}`}
@@ -288,3 +287,5 @@ export default function BubbleMenu({
     </>
   );
 }
+
+// noop: redeploy
