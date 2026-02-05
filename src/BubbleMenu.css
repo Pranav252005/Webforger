@@ -10,6 +10,15 @@
   z-index: 99;
 }
 
+.bubble-menu,
+.bubble-menu .pill-link,
+.bubble-menu .pill-label,
+.bubble-menu .menu-btn,
+.bubble-menu .menu-line,
+.bubble-menu .menu-text {
+  font-family: 'Archivo Black', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+}
+
 .bubble-menu .menu-toggle {
   display: inline-flex;
   align-items: center;
