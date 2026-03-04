@@ -83,6 +83,11 @@ function AnimatedRoutes() {
 }
 
 function App() {
+  // Prevent browser from restoring scroll position automatically
+  if (typeof window !== 'undefined' && window.history) {
+    window.history.scrollRestoration = 'manual';
+  }
+
   const [showLoader, setShowLoader] = useState(() => !sessionStorage.getItem('wf_loader_seen'));
   const [exiting, setExiting] = useState(false);
   const [routesReady, setRoutesReady] = useState(() => !!sessionStorage.getItem('wf_loader_seen'));
