@@ -60,11 +60,8 @@ const LightPillar: React.FC<LightPillarProps> = ({
     const width = container.clientWidth;
     const height = container.clientHeight;
 
-    const isLowEndDevice = navigator.hardwareConcurrency && navigator.hardwareConcurrency <= 4;
-
-    let effectiveQuality = quality;
-    // Only downgrade if it's a genuinely low-end device, don't punish all mobile devices
-    if (isLowEndDevice && quality === 'high') effectiveQuality = 'medium';
+    // We used to downgrade for low-end devices, but now we respect the requested quality exactly.
+    const effectiveQuality = quality;
 
     const qualitySettings = {
       low: { iterations: 24, waveIterations: 1, pixelRatio: 0.5, precision: 'mediump', stepMultiplier: 1.5 },

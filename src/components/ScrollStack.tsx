@@ -338,7 +338,7 @@ const ScrollStack: React.FC<ScrollStackProps> = ({
       <div className="scroll-stack-inner">
         {children}
         {/* Spacer so the last pin can release cleanly */}
-        <div className="scroll-stack-end" />
+        <div className="scroll-stack-end" style={{ height: '50vh' }} />
       </div>
     </div>
   );

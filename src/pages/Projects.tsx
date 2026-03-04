@@ -121,7 +121,7 @@ const About: React.FC = () => {
           pillarRotation={25}
           interactive={false}
           mixBlendMode="screen"
-          quality={isDesktop ? "high" : "low"}
+          quality="high"
         />
       </div>
 
@@ -151,13 +151,13 @@ const About: React.FC = () => {
         </h1>
       </div>
 
-      <div className="projects-scroll-wrapper" style={{ position: 'relative', zIndex: 1, paddingTop: 'clamp(30vh, 40vh, 45vh)', paddingBottom: '5vh' }}>
+      <div className="projects-scroll-wrapper" style={{ position: 'relative', zIndex: 1, paddingTop: 'clamp(30vh, 40vh, 45vh)', paddingBottom: '0vh' }}>
         <ScrollStack
           useWindowScroll={true}
           itemDistance={isDesktop ? 20 : 15}
-          itemStackDistance={isDesktop ? 40 : 80}
-          baseScale={isDesktop ? 0.85 : 0.95}
-          itemScale={isDesktop ? 0.03 : 0.01}
+          itemStackDistance={isDesktop ? 30 : 60}
+          baseScale={isDesktop ? 0.75 : 0.85}
+          itemScale={isDesktop ? 0.04 : 0.02}
           stackPosition={isDesktop ? "45%" : "50%"}
           blurAmount={isDesktop ? 3 : 1.5}
         >
