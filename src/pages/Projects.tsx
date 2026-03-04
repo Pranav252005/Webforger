@@ -151,7 +151,7 @@ const About: React.FC = () => {
         </h1>
       </div>
 
-      <div className="projects-scroll-wrapper" style={{ position: 'relative', zIndex: 1, paddingTop: 'clamp(30vh, 40vh, 45vh)', paddingBottom: '0vh' }}>
+      <div className="projects-scroll-wrapper" style={{ position: 'relative', zIndex: 1, paddingTop: 'clamp(30vh, 40vh, 50vh)', paddingBottom: '0vh' }}>
         <ScrollStack
           useWindowScroll={true}
           itemDistance={isDesktop ? 20 : 15}
