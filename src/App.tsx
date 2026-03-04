@@ -6,9 +6,9 @@ import BubbleMenu from './BubbleMenu';
 import { DeviceProvider } from './lib/device';
 import Home from './pages/Home';
 import Plans from './pages/Plans';
-import About from './pages/About';
+import Projects from './pages/Projects';
 import Contact from './pages/Contact';
-import Blog from './pages/Blog';
+import Reviews from './pages/Reviews';
 
 const items = [
   {
@@ -19,9 +19,9 @@ const items = [
     hoverStyles: { bgColor: '#3b82f6', textColor: '#ffffff' }
   },
   {
-    label: 'About',
-    href: '/about',
-    ariaLabel: 'About',
+    label: 'Projects',
+    href: '/projects',
+    ariaLabel: 'Projects',
     rotation: 8,
     hoverStyles: { bgColor: '#10b981', textColor: '#ffffff' }
   },
@@ -29,13 +29,13 @@ const items = [
     label: 'Plans',
     href: '/plans',
     ariaLabel: 'Plans',
-    rotation: 8,
+    rotation: 7,
     hoverStyles: { bgColor: '#f59e0b', textColor: '#ffffff' }
   },
   {
-    label: 'Blog',
-    href: '/blog',
-    ariaLabel: 'Blog',
+    label: 'Reviews',
+    href: '/reviews',
+    ariaLabel: 'Reviews',
     rotation: 8,
     hoverStyles: { bgColor: '#ef4444', textColor: '#ffffff' }
   },
@@ -43,7 +43,7 @@ const items = [
     label: 'Contact',
     href: '/contact',
     ariaLabel: 'Contact',
-    rotation: -8,
+    rotation: -15,
     hoverStyles: { bgColor: '#8b5cf6', textColor: '#ffffff' }
   }
 ];
@@ -73,8 +73,8 @@ function AnimatedRoutes() {
         <Routes location={location}>
           <Route path="/" element={<Home />} />
           <Route path="/plans" element={<Plans />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/blog" element={<Blog />} />
+          <Route path="/projects" element={<Projects />} />
+          <Route path="/reviews" element={<Reviews />} />
           <Route path="/contact" element={<Contact />} />
         </Routes>
       </motion.div>
@@ -85,6 +85,7 @@ function AnimatedRoutes() {
 function App() {
   const [showLoader, setShowLoader] = useState(() => !sessionStorage.getItem('wf_loader_seen'));
   const [exiting, setExiting] = useState(false);
+  const [routesReady, setRoutesReady] = useState(() => !!sessionStorage.getItem('wf_loader_seen'));
   const loaderRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
@@ -112,6 +113,7 @@ function App() {
       const wait = Math.max(0, 5000 - elapsed);
       setTimeout(() => {
         setExiting(true);
+        setRoutesReady(true);
         setTimeout(() => {
           setShowLoader(false);
           sessionStorage.setItem('wf_loader_seen', '1');
@@ -138,13 +140,13 @@ function App() {
             aria-label="Go to Home"
             style={{
               position: 'fixed',
-              top: '2em',
-              left: '2em',
+              top: 'clamp(1rem, 3vh, 2rem)',
+              left: 'clamp(1rem, 3vw, 2rem)',
               zIndex: 100,
               pointerEvents: 'auto',
               display: 'flex',
               alignItems: 'center',
-              gap: '12px',
+              gap: 'clamp(8px, 2vw, 12px)',
               textDecoration: 'none'
             }}
           >
@@ -152,7 +154,7 @@ function App() {
               src="/Webforger.png"
               alt="Webforger"
               style={{
-                height: '56px',
+                height: 'clamp(40px, 8vw, 56px)',
                 width: 'auto',
                 display: 'block'
               }}
@@ -160,7 +162,7 @@ function App() {
             <span
               style={{
                 fontFamily: "'Archivo Black', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif",
-                fontSize: '24px',
+                fontSize: 'clamp(18px, 4vw, 24px)',
                 color: '#ffffff',
                 letterSpacing: '0.5px',
                 lineHeight: 1
@@ -180,26 +182,27 @@ function App() {
             animationDuration={0.5}
             staggerDelay={0.12}
           />
-          <AnimatedRoutes />
+          {routesReady && <AnimatedRoutes />}
           <span
             style={{
               position: 'fixed',
-              bottom: 6,
+              bottom: '2vh',
               left: '50%',
               transform: 'translateX(-50%)',
-              padding: 0,
+              padding: '0 10px',
               margin: 0,
               color: '#ffffff',
               fontFamily: "'Archivo Black', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif",
               letterSpacing: '0.4px',
-              lineHeight: 1.1,
+              lineHeight: 1.2,
               pointerEvents: 'none',
               background: 'transparent',
               boxShadow: 'none',
               mixBlendMode: 'normal',
               textAlign: 'center',
               display: 'inline-block',
-              width: 'auto',
+              width: '100%',
+              fontSize: 'clamp(0.75rem, 2.5vw, 1rem)',
               zIndex: 9999
             }}
           >

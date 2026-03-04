@@ -27,10 +27,12 @@ export default function Home() {
         left: '50%', 
         transform: 'translate(-50%, -50%)',
         textAlign: 'center',
-        fontSize: '4rem',
+        fontSize: 'clamp(2rem, 5vw, 4rem)',
+        lineHeight: 1.2,
         fontWeight: 'bold',
         color: '#ffffff',
-        maxWidth: '90%',
+        width: '90%',
+        maxWidth: '800px',
         zIndex: 10,
         fontFamily: 'Bookman Old Style, serif'
       }}>

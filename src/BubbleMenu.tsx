@@ -1,5 +1,5 @@
 import type { CSSProperties, ReactNode } from 'react';
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect, useLayoutEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { gsap } from 'gsap';
 
@@ -40,9 +40,9 @@ const DEFAULT_ITEMS: MenuItem[] = [
     hoverStyles: { bgColor: '#3b82f6', textColor: '#ffffff' }
   },
   {
-    label: 'About',
+    label: 'Projects',
     href: '#',
-    ariaLabel: 'About',
+    ariaLabel: 'Projects',
     rotation: 8,
     hoverStyles: { bgColor: '#10b981', textColor: '#ffffff' }
   },
@@ -54,9 +54,9 @@ const DEFAULT_ITEMS: MenuItem[] = [
     hoverStyles: { bgColor: '#f59e0b', textColor: '#ffffff' }
   },
   {
-    label: 'Blog',
+    label: 'Reviews',
     href: '#',
-    ariaLabel: 'Blog',
+    ariaLabel: 'Reviews',
     rotation: 8,
     hoverStyles: { bgColor: '#ef4444', textColor: '#ffffff' }
   },
@@ -143,7 +143,7 @@ export default function BubbleMenu({
     return () => window.removeEventListener('webforger:open-menu', handleOpenMenuEvent);
   }, [isMenuOpen]);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const overlay = overlayRef.current;
     const bubbles = bubblesRef.current.filter(Boolean);
     const labels = labelRefs.current.filter(Boolean);
@@ -272,6 +272,7 @@ export default function BubbleMenu({
                 >
                   <span
                     className="pill-label"
+                    style={{ fontFamily: "'Archivo Black', system-ui, sans-serif" }}
                     ref={el => {
                       if (el) labelRefs.current[idx] = el;
                     }}

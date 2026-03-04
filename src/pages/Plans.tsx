@@ -68,7 +68,7 @@ export default function Plans() {
           <div
             style={{
               display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(360px, 1fr))',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 300px), 1fr))',
               gap: '24px'
             }}
           >
@@ -142,7 +142,7 @@ export default function Plans() {
                 The prices depend on what you want: weekly, bi-weekly, monthly, quarterly, yearly.
               </p>
               <div style={{ display: 'flex', alignItems: 'baseline', gap: 8 }}>
-                <span style={{ fontSize: 32 }}>$60-$250</span>
+                <span style={{ fontSize: 32 }}>₹1500-₹2000</span>
                 <span style={{ color: '#c7c8d9', fontWeight: 600 }}>/website</span>
               </div>
             </div>

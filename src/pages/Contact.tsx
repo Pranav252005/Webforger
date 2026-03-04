@@ -130,18 +130,23 @@ export default function Contact() {
 
   return (
     <div style={{ 
-      position: 'absolute',
-      top: 0,
-      left: 0,
+      position: 'relative',
       width: '100%', 
-      height: '100%'
+      minHeight: '100vh',
+      backgroundColor: '#000',
+      overflowX: 'hidden',
+      overflowY: 'auto',
+      display: 'flex',
+      flexDirection: 'column'
     }}>
-      <Aurora
-        colorStops={["#54034d","#B19EEF","#5227FF"]}
-        blend={0.5}
-        amplitude={1.0}
-        speed={1.4}
-      />
+      <div style={{ position: 'fixed', inset: 0, zIndex: 0 }}>
+        <Aurora
+          colorStops={["#54034d","#B19EEF","#5227FF"]}
+          blend={0.5}
+          amplitude={1.0}
+          speed={1.4}
+        />
+      </div>
       
       {!showContent && (
         <div 
@@ -154,32 +159,44 @@ export default function Contact() {
             textAlign: 'center',
             color: '#ffffff',
             zIndex: 10,
-            fontSize: '3rem',
+            fontSize: 'clamp(2rem, 6vw, 3rem)',
+            width: '90%',
             fontWeight: 'bold',
             fontFamily: 'Bookman Old Style, serif'
           }}
         >
           <h1>Contact Us</h1>
-          <p style={{ fontSize: '1.5rem', marginTop: '1rem' }}>
+          <p style={{ fontSize: 'clamp(1rem, 3vw, 1.5rem)', marginTop: '1rem' }}>
             Get in touch with our team
           </p>
         </div>
       )}
 
-      {showContent && !stepperCompleted && (
-        <div style={{
-          position: 'absolute',
-          top: '50%',
-          left: '50%',
-          transform: 'translate(-50%, -50%)',
-          width: '90%',
-          maxWidth: '600px',
-          zIndex: 10,
-          opacity: 0,
-          animation: 'fadeIn 1s ease-in forwards'
-        }}>
-          <Stepper
-            initialStep={1}
+      <div style={{ 
+        position: 'relative', 
+        zIndex: 10, 
+        flex: 1, 
+        display: 'flex', 
+        flexDirection: 'column', 
+        justifyContent: 'center', 
+        alignItems: 'center',
+        padding: 'clamp(80px, 15vh, 120px) 5vw 40px',
+        boxSizing: 'border-box',
+        width: '100%',
+        minHeight: '100vh',
+        maxWidth: '100vw'
+      }}>
+        {showContent && !stepperCompleted && (
+          <div style={{
+            width: '100%',
+            maxWidth: '500px',
+            opacity: 0,
+            animation: 'fadeIn 1s ease-in forwards',
+            marginBottom: '2rem',
+            boxSizing: 'border-box'
+          }}>
+            <Stepper
+              initialStep={1}
             onBeforeStepChange={handleBeforeStepChange}
             onFinalStepCompleted={() => setStepperCompleted(true)}
             backButtonText="Previous"
@@ -332,80 +349,43 @@ export default function Contact() {
       )}
 
       {showContent && (
-        <>
+        <div style={{
+          display: 'flex',
+          flexDirection: isMobile ? 'column' : 'row',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          width: '100%',
+          maxWidth: '800px',
+          gap: isMobile ? '2rem' : '4rem',
+          marginTop: stepperCompleted ? '0' : '2rem',
+          zIndex: 10,
+          opacity: 0,
+          animation: 'fadeIn 1s ease-in forwards'
+        }}>
           <div className="contact-info-left" style={{
-            position: 'absolute',
-            bottom: isMobile ? '5.5rem' : '2rem',
-            left: isMobile ? '50%' : '10rem',
-            transform: isMobile ? 'translateX(-50%)' : 'none',
             color: '#ffffff',
-            zIndex: 10,
             fontFamily: "'Archivo Black', system-ui, sans-serif",
-            textAlign: isMobile ? 'center' : 'left',
-            width: isMobile ? '90%' : 'auto',
-            opacity: 0,
-            animation: 'fadeIn 1s ease-in forwards'
+            textAlign: 'center'
           }}>
             <div style={{
-              fontSize: isMobile ? '0.65rem' : '1rem',
+              fontSize: isMobile ? '0.85rem' : '1rem',
               marginBottom: '0.3rem',
               color: '#a78bfa'
             }}>
               Contact us at
             </div>
             <div style={{
-              fontSize: isMobile ? '0.7rem' : '1.2rem',
-              marginBottom: '0.2rem',
+              fontSize: isMobile ? '0.9rem' : '1.2rem',
               letterSpacing: isMobile ? '0.5px' : '1px'
             }}>
-              +1 (647) 963-1595
-            </div>
-            <div style={{
-              fontSize: isMobile ? '0.7rem' : '1.2rem',
-              letterSpacing: isMobile ? '0.5px' : '1px'
-            }}>
-              +91 897 133 8163
-            </div>
-          </div>
-
-          <div className="contact-info-right" style={{
-            position: 'absolute',
-            bottom: isMobile ? '1.5rem' : '2rem',
-            right: isMobile ? 'auto' : '-6rem',
-            left: isMobile ? '50%' : 'auto',
-            transform: isMobile ? 'translateX(-50%)' : 'none',
-            color: '#ffffff',
-            zIndex: 10,
-            fontFamily: "'Archivo Black', system-ui, sans-serif",
-            textAlign: isMobile ? 'center' : 'right',
-            width: isMobile ? '90%' : 'auto',
-            opacity: 0,
-            animation: 'fadeIn 1s ease-in forwards'
-          }}>
-            <div style={{
-              fontSize: isMobile ? '0.65rem' : '1rem',
-              marginBottom: '0.3rem',
-              color: '#a78bfa'
-            }}>
-              Email at
-            </div>
-            <div style={{
-              fontSize: isMobile ? '0.7rem' : '1.2rem',
-              letterSpacing: isMobile ? '0.5px' : '1px',
-              wordBreak: 'break-all'
-            }}>
-              webforgerhelp@gmail.com
+              +91 89713 38163
             </div>
           </div>
 
           <div style={{
-            position: 'absolute',
-            bottom: '6rem',
-            left: '50%',
-            transform: 'translateX(-50%)',
-            zIndex: 10,
-            opacity: 0,
-            animation: 'fadeInUp 1s ease-in forwards'
+            display: 'flex',
+            justifyContent: 'center',
+            order: isMobile ? 3 : 2
           }}>
             <button
               onClick={handlePayment}
@@ -440,94 +420,55 @@ export default function Contact() {
               Make Payment
             </button>
           </div>
-        </>
-      )}
 
-      {stepperCompleted && (
-        <>
-          <div style={{
-            position: 'absolute',
-            top: '50%',
-            left: '50%',
-            transform: 'translate(-50%, -50%)',
-            textAlign: 'center',
+          <div className="contact-info-right" style={{
             color: '#ffffff',
-            zIndex: 10,
             fontFamily: "'Archivo Black', system-ui, sans-serif",
-            opacity: 0,
-            animation: 'fadeIn 1s ease-in forwards'
+            textAlign: 'center',
+            order: isMobile ? 2 : 3
           }}>
             <div style={{
-              fontSize: '2.5rem',
-              fontWeight: 'bold',
-              marginBottom: '2rem'
+              fontSize: isMobile ? '0.85rem' : '1rem',
+              marginBottom: '0.3rem',
+              color: '#a78bfa'
             }}>
-              Thank You, {firstName}!
-            </div>
-          </div>
-        </>
-      )}
-
-      {showMobileNotice && isMobile && (
-        <div
-          onClick={() => setShowMobileNotice(false)}
-          style={{
-            position: 'fixed',
-            top: 0,
-            left: 0,
-            right: 0,
-            bottom: 0,
-            zIndex: 9998,
-            backgroundColor: 'transparent'
-          }}
-        >
-          <div
-            onClick={(e) => {
-              e.stopPropagation();
-              setShowMobileNotice(false);
-            }}
-            style={{
-              position: 'absolute',
-              top: '1rem',
-              right: '10rem',
-              backgroundColor: 'rgba(139, 92, 246, 0.25)',
-              backdropFilter: 'blur(10px)',
-              border: '1px solid rgba(168, 85, 247, 0.4)',
-              borderRadius: '16px',
-              padding: '1rem 1.25rem',
-              color: '#ffffff',
-              fontFamily: "'Archivo Black', system-ui, sans-serif",
-              fontSize: '0.85rem',
-              boxShadow: '0 0 30px rgba(139, 92, 246, 0.6), 0 0 60px rgba(139, 92, 246, 0.3)',
-              animation: 'slideInFromRight 0.5s ease-out, glowPulse 2s ease-in-out infinite',
-              cursor: 'pointer',
-              maxWidth: '200px',
-              textAlign: 'center',
-              zIndex: 9999,
-              transition: 'all 0.3s ease'
-            }}
-            onMouseDown={(e) => e.currentTarget.style.transform = 'scale(0.95)'}
-            onMouseUp={(e) => e.currentTarget.style.transform = 'scale(1)'}
-            onTouchStart={(e) => e.currentTarget.style.transform = 'scale(0.95)'}
-            onTouchEnd={(e) => e.currentTarget.style.transform = 'scale(1)'}
-          >
-            <div style={{
-              fontWeight: 'bold',
-              marginBottom: '0.25rem',
-              color: '#e9d5ff'
-            }}>
-              💻 Best Viewed on Laptop
+              Email at
             </div>
             <div style={{
-              fontSize: '0.7rem',
-              color: '#c4b5fd',
-              fontFamily: 'system-ui, sans-serif'
+              fontSize: isMobile ? '0.9rem' : '1.2rem',
+              letterSpacing: isMobile ? '0.5px' : '1px',
+              wordBreak: 'break-all'
             }}>
-              Tap to dismiss
+              webforgerhelp@gmail.com
             </div>
           </div>
         </div>
       )}
+
+      {stepperCompleted && (
+        <div style={{
+          position: 'absolute',
+          top: '40%',
+          left: '50%',
+          transform: 'translate(-50%, -50%)',
+          textAlign: 'center',
+          color: '#ffffff',
+          zIndex: 10,
+          fontFamily: "'Archivo Black', system-ui, sans-serif",
+          opacity: 0,
+          animation: 'fadeIn 1s ease-in forwards'
+        }}>
+          <div style={{
+            fontSize: 'clamp(2rem, 5vw, 2.5rem)',
+            fontWeight: 'bold',
+            marginBottom: '2rem'
+          }}>
+            Thank You, {firstName}!
+          </div>
+        </div>
+      )}
+
+      </div>
 
       <style>{`
         @keyframes fadeIn {

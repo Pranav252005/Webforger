@@ -151,6 +151,12 @@ export default function Aurora(props: AuroraProps) {
       }
     }
     window.addEventListener('resize', resize);
+    
+    let resizeObserver: ResizeObserver | null = null;
+    if (typeof ResizeObserver !== 'undefined') {
+      resizeObserver = new ResizeObserver(() => resize());
+      resizeObserver.observe(ctn);
+    }
 
     const geometry = new Triangle(gl);
     if (geometry.attributes.uv) {
@@ -200,6 +206,9 @@ export default function Aurora(props: AuroraProps) {
     return () => {
       cancelAnimationFrame(animateId);
       window.removeEventListener('resize', resize);
+      if (resizeObserver) {
+        resizeObserver.disconnect();
+      }
       if (ctn && gl.canvas.parentNode === ctn) {
         ctn.removeChild(gl.canvas);
       }
