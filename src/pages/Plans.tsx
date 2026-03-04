@@ -1,6 +1,16 @@
+import { useState, useEffect } from 'react';
 import Plasma from '../Plasma';
 
 export default function Plans() {
+  const [isDesktop, setIsDesktop] = useState(true);
+
+  useEffect(() => {
+    setIsDesktop(window.innerWidth >= 768);
+    const handleResize = () => setIsDesktop(window.innerWidth >= 768);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   return (
     <div
       style={{
@@ -14,11 +24,11 @@ export default function Plans() {
       <div style={{ position: 'absolute', inset: 0, zIndex: 0 }}>
         <Plasma
           color="#8b5cf6"
-          speed={1}
+          speed={isDesktop ? 1 : 0.5}
           direction="forward"
-          scale={1.5}
+          scale={isDesktop ? 1.5 : 2.5}
           opacity={1}
-          mouseInteractive={true}
+          mouseInteractive={isDesktop}
         />
         <div
           style={{
@@ -85,7 +95,8 @@ export default function Plans() {
                   boxShadow: '0 12px 40px rgba(0,0,0,0.4)',
                   borderRadius: 20,
                   padding: '28px 24px',
-                  backdropFilter: 'blur(10px) saturate(140%)',
+                  backdropFilter: isDesktop ? 'blur(10px) saturate(140%)' : 'none',
+                  WebkitBackdropFilter: isDesktop ? 'blur(10px) saturate(140%)' : 'none',
                   transition: 'transform 220ms ease, border-color 220ms ease, box-shadow 220ms ease'
                 }}
                 onMouseEnter={(e) => {
@@ -123,7 +134,8 @@ export default function Plans() {
                 boxShadow: '0 12px 40px rgba(0,0,0,0.4)',
                 borderRadius: 20,
                 padding: '28px 24px',
-                backdropFilter: 'blur(10px) saturate(140%)',
+                backdropFilter: isDesktop ? 'blur(10px) saturate(140%)' : 'none',
+                WebkitBackdropFilter: isDesktop ? 'blur(10px) saturate(140%)' : 'none',
                 transition: 'transform 220ms ease, border-color 220ms ease, box-shadow 220ms ease'
               }}
               onMouseEnter={(e) => {

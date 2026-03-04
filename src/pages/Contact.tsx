@@ -180,7 +180,7 @@ export default function Contact() {
         flexDirection: 'column', 
         justifyContent: 'center', 
         alignItems: 'center',
-        padding: 'clamp(80px, 15vh, 120px) 5vw 40px',
+        padding: 'clamp(100px, 20vh, 160px) 5vw 40px',
         boxSizing: 'border-box',
         width: '100%',
         minHeight: '100vh',
@@ -192,7 +192,7 @@ export default function Contact() {
             maxWidth: '500px',
             opacity: 0,
             animation: 'fadeIn 1s ease-in forwards',
-            marginBottom: '2rem',
+            marginBottom: '4rem',
             boxSizing: 'border-box'
           }}>
             <Stepper
@@ -382,45 +382,6 @@ export default function Contact() {
             </div>
           </div>
 
-          <div style={{
-            display: 'flex',
-            justifyContent: 'center',
-            order: isMobile ? 3 : 2
-          }}>
-            <button
-              onClick={handlePayment}
-              disabled={!stepperCompleted}
-              style={{
-                padding: '16px 48px',
-                fontSize: '1.2rem',
-                fontWeight: 'bold',
-                fontFamily: "'Archivo Black', system-ui, sans-serif",
-                background: '#ffffff',
-                color: '#000000',
-                border: 'none',
-                borderRadius: '12px',
-                cursor: stepperCompleted ? 'pointer' : 'not-allowed',
-                boxShadow: '0 8px 24px rgba(255, 255, 255, 0.3)',
-                transition: 'all 0.3s ease',
-                textTransform: 'uppercase',
-                letterSpacing: '1px',
-                opacity: stepperCompleted ? 1 : 0.55
-              }}
-              onMouseEnter={(e) => {
-                if (!stepperCompleted) return;
-                e.currentTarget.style.transform = 'translateY(-2px)';
-                e.currentTarget.style.boxShadow = '0 12px 32px rgba(255, 255, 255, 0.5)';
-              }}
-              onMouseLeave={(e) => {
-                if (!stepperCompleted) return;
-                e.currentTarget.style.transform = 'translateY(0)';
-                e.currentTarget.style.boxShadow = '0 8px 24px rgba(255, 255, 255, 0.3)';
-              }}
-            >
-              Make Payment
-            </button>
-          </div>
-
           <div className="contact-info-right" style={{
             color: '#ffffff',
             fontFamily: "'Archivo Black', system-ui, sans-serif",
@@ -447,21 +408,22 @@ export default function Contact() {
 
       {stepperCompleted && (
         <div style={{
-          position: 'absolute',
-          top: '40%',
-          left: '50%',
-          transform: 'translate(-50%, -50%)',
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'center',
           textAlign: 'center',
           color: '#ffffff',
           zIndex: 10,
           fontFamily: "'Archivo Black', system-ui, sans-serif",
           opacity: 0,
-          animation: 'fadeIn 1s ease-in forwards'
+          animation: 'fadeIn 1s ease-in forwards',
+          marginBottom: '2rem'
         }}>
           <div style={{
             fontSize: 'clamp(2rem, 5vw, 2.5rem)',
             fontWeight: 'bold',
-            marginBottom: '2rem'
+            marginBottom: '1rem'
           }}>
             Thank You, {firstName}!
           </div>
@@ -474,22 +436,20 @@ export default function Contact() {
         @keyframes fadeIn {
           from {
             opacity: 0;
-            transform: translate(-50%, -45%);
           }
           to {
             opacity: 1;
-            transform: translate(-50%, -50%);
           }
         }
 
         @keyframes fadeInUp {
           from {
             opacity: 0;
-            transform: translate(-50%, 10px);
+            transform: translateY(10px);
           }
           to {
             opacity: 1;
-            transform: translate(-50%, 0);
+            transform: translateY(0);
           }
         }
 

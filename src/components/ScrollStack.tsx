@@ -85,8 +85,13 @@ const ScrollStack: React.FC<ScrollStackProps> = ({
   const getElementOffset = useCallback(
     (element: HTMLElement) => {
       if (useWindowScroll) {
-        const rect = element.getBoundingClientRect();
-        return rect.top + window.scrollY;
+        let top = 0;
+        let current: HTMLElement | null = element;
+        while (current) {
+          top += current.offsetTop;
+          current = current.offsetParent as HTMLElement;
+        }
+        return top;
       } else {
         return element.offsetTop;
       }
@@ -281,30 +286,26 @@ const ScrollStack: React.FC<ScrollStackProps> = ({
       card.style.webkitTransform = 'none';
     });
     
-    // Allow the DOM to settle to get exact layout calculations
-    const initTimer = requestAnimationFrame(() => {
-      // Cache the initial natural top positions
-      initialTopsRef.current = cards.map(card => getElementOffset(card));
+    // Force immediate layout calculation for perfectly stable initial positions
+    initialTopsRef.current = cards.map(card => getElementOffset(card));
 
-      cards.forEach((card, i) => {
-        if (i < cards.length - 1) {
-          card.style.marginBottom = `${itemDistance}vh`;
-        }
-        card.style.willChange = 'transform, filter';
-        card.style.transformOrigin = 'top center';
-        card.style.backfaceVisibility = 'hidden';
-        card.style.transform = 'translateZ(0)';
-        card.style.webkitTransform = 'translateZ(0)';
-        card.style.perspective = '1000px';
-        card.style.webkitPerspective = '1000px';
-      });
-
-      setupLenis();
-      updateCardTransforms();
+    cards.forEach((card, i) => {
+      if (i < cards.length - 1) {
+        card.style.marginBottom = `${itemDistance}vh`;
+      }
+      card.style.willChange = 'transform, filter';
+      card.style.transformOrigin = 'top center';
+      card.style.backfaceVisibility = 'hidden';
+      card.style.transform = 'translateZ(0)';
+      card.style.webkitTransform = 'translateZ(0)';
+      card.style.perspective = '1000px';
+      card.style.webkitPerspective = '1000px';
     });
 
+    setupLenis();
+    updateCardTransforms();
+
     return () => {
-      cancelAnimationFrame(initTimer);
       if (animationFrameRef.current) {
         cancelAnimationFrame(animationFrameRef.current);
       }

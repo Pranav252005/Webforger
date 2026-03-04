@@ -1,23 +1,32 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import FaultyTerminal from '../components/FaultyTerminal';
 
 const Reviews: React.FC = () => {
+  const [isDesktop, setIsDesktop] = useState(true);
+
+  useEffect(() => {
+    setIsDesktop(window.innerWidth >= 768);
+    const handleResize = () => setIsDesktop(window.innerWidth >= 768);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   return (
     <div style={{ width: '100%', height: '100vh', position: 'relative', backgroundColor: '#000', overflow: 'hidden' }}>
       <div style={{ position: 'absolute', inset: 0, zIndex: 0 }}>
         <FaultyTerminal
-          scale={2.4}
-          gridMul={[2, 1]}
-          digitSize={1.2}
+          scale={isDesktop ? 2.4 : 1.5}
+          gridMul={isDesktop ? [2, 1] : [1, 1]}
+          digitSize={isDesktop ? 1.2 : 0.8}
           timeScale={0.6}
           pause={false}
-          scanlineIntensity={0.5}
-          glitchAmount={1}
-          flickerAmount={1}
-          noiseAmp={1}
+          scanlineIntensity={isDesktop ? 0.5 : 0.2}
+          glitchAmount={isDesktop ? 1 : 0.3}
+          flickerAmount={isDesktop ? 1 : 0.3}
+          noiseAmp={isDesktop ? 1 : 0.5}
           chromaticAberration={0}
           dither={0}
-          curvature={0.17}
+          curvature={isDesktop ? 0.17 : 0}
           tint="#4fca3f"
           mouseReact={false}
           mouseStrength={0.5}
