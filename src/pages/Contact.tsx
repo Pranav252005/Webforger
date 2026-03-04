@@ -101,33 +101,7 @@ export default function Contact() {
     }
     return true;
   };
-
-  const handlePayment = () => {
-    const options = {
-      key: 'YOUR_RAZORPAY_KEY_ID',
-      amount: 50000,
-      currency: 'INR',
-      name: 'Webforger',
-      description: 'Service Payment',
-      image: '/Webforger.png',
-      handler: function (response: any) {
-        alert('Payment successful! Payment ID: ' + response.razorpay_payment_id);
-        console.log('Form Data:', { firstName, lastName, companyName, email, message });
-      },
-      prefill: {
-        name: `${firstName} ${lastName}`,
-        email: email,
-        contact: ''
-      },
-      theme: {
-        color: '#8b5cf6'
-      }
-    };
-
-    const rzp = new (window as any).Razorpay(options);
-    rzp.open();
-  };
-
+  
   return (
     <div style={{ 
       position: 'relative',

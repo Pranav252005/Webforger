@@ -151,15 +151,15 @@ const About: React.FC = () => {
         </h1>
       </div>
 
-      <div className="projects-scroll-wrapper" style={{ position: 'relative', zIndex: 1, paddingTop: 'clamp(30vh, 40vh, 45vh)', paddingBottom: '10vh' }}>
+      <div className="projects-scroll-wrapper" style={{ position: 'relative', zIndex: 1, paddingTop: 'clamp(30vh, 40vh, 45vh)', paddingBottom: '5vh' }}>
         <ScrollStack
           useWindowScroll={true}
           itemDistance={isDesktop ? 20 : 15}
-          itemStackDistance={isDesktop ? 40 : 25}
-          baseScale={isDesktop ? 0.85 : 0.9}
-          itemScale={isDesktop ? 0.03 : 0.02}
-          stackPosition={isDesktop ? "45%" : "35%"}
-          blurAmount={isDesktop ? 3 : 2}
+          itemStackDistance={isDesktop ? 40 : 80}
+          baseScale={isDesktop ? 0.85 : 0.95}
+          itemScale={isDesktop ? 0.03 : 0.01}
+          stackPosition={isDesktop ? "45%" : "50%"}
+          blurAmount={isDesktop ? 3 : 1.5}
         >
           {websites.map((site, index) => (
             <ScrollStackItem key={index}>
