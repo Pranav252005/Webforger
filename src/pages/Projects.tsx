@@ -9,42 +9,42 @@ const Projects: React.FC = () => {
       title: 'Social Crust',
       description: 'socialcrust.netlify.app',
       color: '#0a0a0a',
-      image: '../public/SC.png'
+      image: '/SC.png'
     },
     {
       label: 'Bakehouse',
       title: 'Lucca Bakehouse',
       description: 'luccabakehouse.netlify.app',
       color: '#0a0a0a',
-      image: '../public/LB.png'
+      image: '/LB.png'
     },
     {
       label: 'Stock Analyst',
       title: 'TheAnalystAI',
       description: 'theanalystai.com',
       color: '#0a0a0a',
-      image: '../public/AA.png'
+      image: '/AA.png'
     },
     {
       label: 'Jewelry',
       title: 'Shvyra',
       description: 'shvyra.com',
       color: '#0a0a0a',
-      image: '../public/S.png'
+      image: '/S.png'
     },
     {
       label: 'Jewelry',
       title: 'Shivora',
       description: 'myshivora.com',
       color: '#0a0a0a',
-      image: '../public/Sh.png'
+      image: '/Sh.png'
     },
     {
       label: 'AI receptionist',
       title: 'Recepta',
       description: 'receptaai.netlify.app',
       color: '#0a0a0a',
-      image: '../public/Re.png'
+      image: '/Re.png'
     }
   ];
 
@@ -95,7 +95,7 @@ const Projects: React.FC = () => {
           letterSpacing: '2px',
           textShadow: '0 4px 20px rgba(0,0,0,0.5)'
         }}>
-          OUR PROJECTS
+          PROJECTS
         </h1>
       </div>
 
