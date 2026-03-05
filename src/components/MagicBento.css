@@ -103,6 +103,18 @@
   font-family: monospace; /* URL style */
 }
 
+.magic-bento-card__link {
+  color: inherit;
+  text-decoration: none;
+  pointer-events: auto;
+  transition: opacity 0.2s ease;
+}
+
+.magic-bento-card__link:hover {
+  text-decoration: underline;
+  opacity: 1;
+}
+
 /* ... existing text clamp styles ... */
 
 @media (max-width: 767px) {

@@ -570,7 +570,21 @@ const MagicBento: React.FC<BentoProps> = ({
               </div>
               <div className="magic-bento-card__content">
                 <h2 className="magic-bento-card__title">{card.title}</h2>
-                <p className="magic-bento-card__description">{card.description}</p>
+                <p className="magic-bento-card__description">
+                  {card.description && card.description.includes('.') ? (
+                    <a 
+                      href={card.description.startsWith('http') ? card.description : `https://${card.description}`} 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="magic-bento-card__link"
+                      onClick={(e) => e.stopPropagation()}
+                    >
+                      {card.description}
+                    </a>
+                  ) : (
+                    card.description
+                  )}
+                </p>
               </div>
             </>
           );
