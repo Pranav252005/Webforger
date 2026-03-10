@@ -5,14 +5,14 @@ import MagicBento, { BentoCardProps } from '../components/MagicBento';
 const Projects: React.FC = () => {
   const projects: BentoCardProps[] = [
     {
-      label: 'Cafe',
+      label: 'Cafe - Under working',
       title: 'Social Crust',
       description: 'socialcrust.netlify.app',
       color: '#0a0a0a',
       image: '/SC.png'
     },
     {
-      label: 'Bakehouse',
+      label: 'Bakehouse - Under working',
       title: 'Lucca Bakehouse',
       description: 'luccabakehouse.netlify.app',
       color: '#0a0a0a',

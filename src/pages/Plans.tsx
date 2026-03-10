@@ -83,9 +83,9 @@ export default function Plans() {
             }}
           >
             {[
-              { title: 'Starter', desc: 'Launch-ready features with guided onboarding, and tips for better UI/UX.' },
-              { title: 'Creator', desc: 'Dynamic effects, performance tuning, and priority help + everthing in Starter.' },
-              { title: 'Studio', desc: '3D assets, performance tuning, and SEO integration + everything in Starter and Creator.' }
+              { title: 'Starter', price: '₹7000', desc: 'Launch-ready features with guided onboarding, and a simple all ready website.' },
+              { title: 'Creator', price: '₹12000', desc: 'Dynamic effects, clean website, performance tuning, and priority help + everthing in Starter.' },
+              { title: 'Studio', price: '₹18000', desc: '3D assets, stunning experience websites, and SEO integration + everything in Starter and Creator.' }
             ].map((plan) => (
               <div
                 key={plan.title}
@@ -113,7 +113,8 @@ export default function Plans() {
                 <h3 style={{ margin: '0 0 8px', fontSize: 22 }}>{plan.title}</h3>
                 <p style={{ margin: '0 0 16px', color: '#c7c8d9', fontWeight: 500 }}>{plan.desc}</p>
                 <div style={{ display: 'flex', alignItems: 'baseline', gap: 8 }}>
-                  <span style={{ color: '#8a7fa2ff', fontWeight: 600 }}>Negotiable</span>
+                  <span style={{ fontSize: 32 }}>{plan.price}</span>
+                  <span style={{ color: '#8a7fa2ff', fontWeight: 600 }}>/website</span>
                 </div>
               </div>
             ))}
@@ -154,8 +155,8 @@ export default function Plans() {
                 The prices depend on what you want: weekly, bi-weekly, monthly, quarterly, yearly.
               </p>
               <div style={{ display: 'flex', alignItems: 'baseline', gap: 8 }}>
-                <span style={{ fontSize: 32 }}>₹1500-₹2000</span>
-                <span style={{ color: '#c7c8d9', fontWeight: 600 }}>/website</span>
+                <span style={{ fontSize: 32 }}>₹1500-₹6000</span>
+                <span style={{ color: '#8a7fa2ff', fontWeight: 600 }}>/website</span>
               </div>
             </div>
           </div>
