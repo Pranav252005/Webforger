@@ -10,7 +10,7 @@ const Projects: React.FC = () => {
       description: 'luccabakehouse.netlify.app',
       color: '#0a0a0a',
       image: '/LB.png'
-    }
+    },
     {
       label: 'Stock Analyst',
       title: 'TheAnalystAI',
