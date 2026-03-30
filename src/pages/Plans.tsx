@@ -18,12 +18,12 @@ export default function Plans() {
         minHeight: '100vh',
         width: '100%',
         overflow: 'hidden',
-        backgroundColor: '#0c0a1a'
+        backgroundColor: '#000000'
       }}
     >
       <div style={{ position: 'absolute', inset: 0, zIndex: 0 }}>
         <Plasma
-          color="#8b5cf6"
+          color="#6e45cd"
           speed={isDesktop ? 1 : 0.5}
           direction="forward"
           scale={isDesktop ? 1.5 : 2.5}
@@ -83,9 +83,9 @@ export default function Plans() {
             }}
           >
             {[
-              { title: 'Starter', price: '₹7000', desc: 'Launch-ready features with guided onboarding, and a simple all ready website.' },
-              { title: 'Creator', price: '₹12000', desc: 'Dynamic effects, clean website, performance tuning, and priority help + everthing in Starter.' },
-              { title: 'Studio', price: '₹18000', desc: '3D assets, stunning experience websites, and SEO integration + everything in Starter and Creator.' }
+              { title: 'Starter', price: '₹12000', desc: 'Launch-ready features with guided onboarding, and a simple all ready website.' },
+              { title: 'Creator', price: '₹15000', desc: 'Dynamic effects, clean website, performance tuning, and priority help + everthing in Starter.' },
+              { title: 'Studio', price: '₹20000', desc: '3D assets, stunning experience websites, and SEO integration + everything in Starter and Creator.' }
             ].map((plan) => (
               <div
                 key={plan.title}

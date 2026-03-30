@@ -5,19 +5,12 @@ import MagicBento, { BentoCardProps } from '../components/MagicBento';
 const Projects: React.FC = () => {
   const projects: BentoCardProps[] = [
     {
-      label: 'Cafe - Under working',
-      title: 'Social Crust',
-      description: 'socialcrust.netlify.app',
-      color: '#0a0a0a',
-      image: '/SC.png'
-    },
-    {
-      label: 'Bakehouse - Under working',
-      title: 'Lucca Bakehouse',
+      label: 'cafe',
+      title: 'Example cafe',
       description: 'luccabakehouse.netlify.app',
       color: '#0a0a0a',
       image: '/LB.png'
-    },
+    }
     {
       label: 'Stock Analyst',
       title: 'TheAnalystAI',
@@ -54,24 +47,24 @@ const Projects: React.FC = () => {
         width: '100%',
         minHeight: '100vh',
         position: 'relative',
-        backgroundColor: '#000',
+        backgroundColor: '#ffffff',
         overflowX: 'hidden'
       }}
     >
       <div style={{ width: '100%', height: '100vh', position: 'fixed', inset: 0, zIndex: 0 }}>
         <LightPillar
-          topColor="#1f0f18"
+          topColor="#ff0392"
           bottomColor="#f59e9e"
-          intensity={1.2}
+          intensity={1.5}
           rotationSpeed={0.1}
           glowAmount={0.001}
           pillarWidth={9.3}
-          pillarHeight={0.4}
+          pillarHeight={0.8}
           noiseIntensity={0.5}
           pillarRotation={25}
           interactive={false}
-          mixBlendMode="screen"
-          quality="high"
+          mixBlendMode="overlay"
+          quality="medium"
         />
       </div>
 
@@ -99,7 +92,7 @@ const Projects: React.FC = () => {
         </h1>
       </div>
 
-      <div style={{ position: 'relative', zIndex: 1, paddingBottom: '10vh', width: '100%' }}>
+      <div style={{ position: 'relative', zIndex: 1, marginTop: '-3vh', width: '100%' }}>
         <MagicBento 
           items={projects}
           textAutoHide={true}
