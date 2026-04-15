@@ -83,9 +83,9 @@ export default function Plans() {
             }}
           >
             {[
-              { title: 'Starter', price: '₹12000', desc: 'Launch-ready features with guided onboarding, and a simple all ready website.' },
-              { title: 'Creator', price: '₹15000', desc: 'Dynamic effects, clean website, performance tuning, and priority help + everthing in Starter.' },
-              { title: 'Studio', price: '₹20000', desc: '3D assets, stunning experience websites, and SEO integration + everything in Starter and Creator.' }
+              { title: 'Starter', price: 'Ranges from ₹5000-₹7000', desc: 'Launch-ready features with guided onboarding, and a simple all ready website.' },
+              { title: 'Creator', price: 'Ranges from ₹7000-₹10000', desc: 'Dynamic effects, clean website, performance tuning, and priority help + everthing in Starter.' },
+              { title: 'Studio', price: 'Ranges from ₹15000-₹20000', desc: '3D assets, stunning experience websites, and SEO integration + everything in Starter and Creator.' }
             ].map((plan) => (
               <div
                 key={plan.title}
